@@ -1,0 +1,163 @@
+.header {
+  overflow: hidden;
+  background-color: #009879;
+  padding: 20px 10px;
+  min-width: 200px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.header a {
+  float: left;
+  color: white;
+  text-align: center;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px;
+  font-family: sans-serif;
+  line-height: 25px;
+  border-radius: 4px;
+}
+
+.header a.logo {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.header a:hover {
+  background-color: black;
+  color: white;
+}
+
+.header-right {
+  float: right;
+}
+
+@media screen and (max-width: 500px) {
+  .header a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+  .header-right {
+    float: none;
+  }
+}
+
+.styled-table {
+    border-collapse: collapse;
+    width:98%;
+    margin: 1% 1% 25px;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 200px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.styled-table thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+}
+
+.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+}
+
+.styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+
+.styled-table tbody tr.active-row {
+    font-weight: bold;
+    color: #009879;
+}
+
+.ticket h2 {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    padding: 12px 15px;
+    margin-top: 1%;
+    margin-left:1%;
+    margin-right: 1%;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 200px;
+}
+
+.pagination .page-link {
+    color: #009879;
+    border: 1px solid #009879;
+}
+
+.pagination .page-link:hover {
+    background-color: #f3f3f3;
+    color: #009879;
+}
+
+.pagination .page-item.active .page-link {
+    background-color: #ff751f;
+    border-color: #009879;
+}
+
+.centering {
+    text-align: center;
+}
+
+.status-todo {
+    background-color: grey;
+    color: #ffffff;
+    padding: 5px;
+    border-radius: 4px;
+}
+
+.status-in-review {
+    background-color: yellow;
+    color: #000000;
+    padding: 5px;
+    border-radius: 4px;
+}
+
+.status-in-progress {
+    background-color: blue;
+    color: #ffffff;
+    padding: 5px;
+    border-radius: 4px;
+}
+
+.status-done {
+    background-color: #01e30d;
+    color: #ffffff;
+    padding: 5px;
+    border-radius: 4px;
+}
+
+.text-header {
+    color: #ffffff;
+}
+
+.custom-button-orange {
+    background-color: #ff751f;
+    border-radius: 4px;
+    border-color: #009879;
+    color: white;
+    padding: 7px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1em;
+}
+
+body {
+    font-family: sans-serif;
+}
