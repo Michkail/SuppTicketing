@@ -1,0 +1,9 @@
+services:
+  web:
+    image: ticketing:latest
+    build: .
+    command: ["python", "manage.py", "runserver", "0.0.0.0:8444"]
+    volumes:
+      - .:/app
+    ports:
+      - "8444:8444"

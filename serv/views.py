@@ -1,11 +1,19 @@
+from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.shortcuts import render, redirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import HttpResponse
 from .models import Ticket
-from .forms import TicketForm
+from .forms import TicketForm, LoginForm
+from django.contrib.auth.views import LoginView
 
 
+class UserLoginView(LoginView):
+    template_name = 'login.html'
+    authentication_form = LoginForm
+
+
+@login_required
 def index(request):
     queries = request.GET.get('search', '')
     sort_field = request.GET.get('sort', 'created_at')
