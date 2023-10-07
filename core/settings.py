@@ -25,7 +25,7 @@ SECRET_KEY = 'l5f9c=xo%vvpthmk-(4r2ui1&9l4t!pharo$p&#ypi#ukz120o'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -38,6 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # Additional libs
+    'minio_storage',
+
+    # Apps
     'serv'
 ]
 
@@ -124,8 +128,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-STATIC_URL = '/static/'
-
+STATIC_URL = 'static/'
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
+STATIC_ROOT = 'media'
 
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
@@ -135,3 +142,9 @@ LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = 'login'
 
+AWS_ACCESS_KEY_ID = '1i7RSmBNNmfL7E0V'
+AWS_SECRET_ACCESS_KEY = 'OyMcsfwxdPSXNgQtxvcZnfG3U7I9hhZ7'
+AWS_STORAGE_BUCKET_NAME = 'report'
+AWS_S3_ENDPOINT_URL = 'http://100.103.184.131:9000'
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'

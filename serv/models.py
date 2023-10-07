@@ -1,6 +1,7 @@
 from django.db import models
-
 from django.contrib.auth.models import User
+
+from phonenumber_field.modelfields import PhoneNumberField
 
 
 # Create your models here.
@@ -67,5 +68,23 @@ class Ticket(models.Model):
     media = models.FileField(upload_to="media/", default=None, null=True)
     location = models.CharField(max_length=25, choices=LocationChoices.choices, default=LocationChoices.JAKARTA)
     categories = models.CharField(max_length=25, choices=CategoryType.choices, default=CategoryType.PURCHASING)
+    created_at = models.DateTimeField('created at', auto_now_add=True)
+    updated_at = models.DateTimeField('updated at', auto_now=True)
+
+
+class ContactRelation(models.Model):
+    provider = models.CharField(max_length=25)
+    contact = PhoneNumberField(null=False, blank=False, unique=True)
+    address = models.TextField()
+    maps = models.URLField(blank=True)  # URL Gmaps
+    id_customer = models.CharField(max_length=25)
+    created_at = models.DateTimeField('created at', auto_now_add=True)
+    updated_at = models.DateTimeField('updated at', auto_now=True)
+
+
+class ContactLeader(models.Model):
+    name = models.CharField(max_length=25)
+    contact = PhoneNumberField(null=False, blank=False, unique=True)
+    location = models.CharField(max_length=25, choices=LocationChoices.choices, default=LocationChoices.JAKARTA)
     created_at = models.DateTimeField('created at', auto_now_add=True)
     updated_at = models.DateTimeField('updated at', auto_now=True)

@@ -34,7 +34,7 @@ def index(request):
         sort_field = '-' + sort_field
 
     ticket_list = ticket_list.order_by(sort_field)
-    paginator = Paginator(ticket_list, 20)
+    paginator = Paginator(ticket_list, 10)
     page = request.GET.get('page')
 
     try:

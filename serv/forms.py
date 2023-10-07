@@ -14,9 +14,14 @@ class TicketForm(forms.ModelForm):
             'location': forms.Select(attrs={'class': 'form-control'}),
             'categories': forms.Select(attrs={'class': 'form-control'}),
             'description': forms.Textarea(attrs={'class': 'form-control'}),
-            'media': forms.ClearableFileInput(attrs={'class': 'form-control-file'})
+            'media': forms.ClearableFileInput(attrs={'class': 'form-control-file'}),
+
+
+            'provider': forms.TextInput(attrs={'class': 'form-control-file'}),
+            'contact': forms.TextInput(attrs={'class': 'form-control-file'}),
         }
 
 
 class LoginForm(AuthenticationForm):
-    pass
+    username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form__input'}))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form__input'}))

@@ -1,6 +1,22 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap");
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+
+}
+
+:root,
+body,
+html {
+  height: 100%;
+}
+
+
 .header {
   overflow: hidden;
-  background-color: #0C8131;
+  background-color: #0c8131;
   padding: 20px 10px;
   min-width: 200px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
@@ -44,120 +60,265 @@
 }
 
 .styled-table {
-    border-collapse: collapse;
-    width:98%;
-    margin: 1% 1% 25px;
-    font-size: 0.9em;
-    font-family: sans-serif;
-    min-width: 200px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  border-collapse: collapse;
+  width: 98%;
+  margin: 1% 1% 25px;
+  font-size: 0.9em;
+  font-family: sans-serif;
+  min-width: 200px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
 
 .styled-table thead tr {
-    background-color: #0C8131;
-    color: #ffffff;
-    text-align: left;
+  background-color: #0c8131;
+  color: #ffffff;
+  text-align: left;
 }
 
 .styled-table th,
 .styled-table td {
-    padding: 12px 15px;
+  padding: 12px 15px;
 }
 
 .styled-table tbody tr {
-    border-bottom: 1px solid #dddddd;
+  border-bottom: 1px solid #dddddd;
 }
 
 .styled-table tbody tr:nth-of-type(even) {
-    background-color: #f3f3f3;
+  background-color: #f3f3f3;
 }
 
 .styled-table tbody tr:last-of-type {
-    border-bottom: 2px solid #0C8131;
+  border-bottom: 2px solid #0c8131;
 }
 
 .styled-table tbody tr.active-row {
-    font-weight: bold;
-    color: #0C8131;
+  font-weight: bold;
+  color: #0c8131;
 }
 
 .ticket h2 {
-    background-color: #0C8131;
-    color: #ffffff;
-    text-align: left;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-    padding: 12px 15px;
-    margin-top: 1%;
-    margin-left:1%;
-    margin-right: 1%;
-    font-size: 0.9em;
-    font-family: sans-serif;
-    min-width: 200px;
+  background-color: #0c8131;
+  color: #ffffff;
+  text-align: left;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  padding: 12px 15px;
+  margin-top: 1%;
+  margin-left: 1%;
+  margin-right: 1%;
+  font-size: 0.9em;
+  font-family: sans-serif;
+  min-width: 200px;
 }
 
 .pagination .page-link {
-    color: #0C8131;
-    border: 1px solid #0C8131;
+  color: #0c8131;
+  border: 1px solid #0c8131;
 }
 
 .pagination .page-link:hover {
-    background-color: #f3f3f3;
-    color: #0C8131;
+  background-color: #f3f3f3;
+  color: #0c8131;
 }
 
 .pagination .page-item.active .page-link {
-    background-color: #ff751f;
-    border-color: #0C8131;
+  background-color: #ff751f;
+  border-color: #0c8131;
 }
 
 .centering {
-    text-align: center;
+  text-align: center;
 }
 
 .status-todo {
-    background-color: grey;
-    color: #ffffff;
-    padding: 5px;
-    border-radius: 4px;
+  background-color: grey;
+  color: #ffffff;
+  padding: 5px;
+  border-radius: 4px;
 }
 
 .status-in-review {
-    background-color: yellow;
-    color: #000000;
-    padding: 5px;
-    border-radius: 4px;
+  background-color: yellow;
+  color: #000000;
+  padding: 5px;
+  border-radius: 4px;
 }
 
 .status-in-progress {
-    background-color: blue;
-    color: #ffffff;
-    padding: 5px;
-    border-radius: 4px;
+  background-color: blue;
+  color: #ffffff;
+  padding: 5px;
+  border-radius: 4px;
 }
 
 .status-done {
-    background-color: #01e30d;
-    color: #ffffff;
-    padding: 5px;
-    border-radius: 4px;
+  background-color: #01e30d;
+  color: #ffffff;
+  padding: 5px;
+  border-radius: 4px;
 }
 
 .text-header {
-    color: #ffffff;
+  color: #ffffff;
 }
 
 .custom-button-orange {
-    background-color: #ff751f;
-    border-radius: 4px;
-    border-color: #0C8131;
-    color: white;
-    padding: 7px 10px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 1em;
+  background-color: #ff751f;
+  border-radius: 4px;
+  border-color: #0c8131;
+  color: white;
+  padding: 7px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1em;
 }
 
 body {
-    font-family: sans-serif;
+  font-family: "Inter", sans-serif;
+}
+
+.login{
+    display: flex;
+    height: 100%;
+}
+
+.login__box{
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login__box--left{
+    width: 35%;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(./assets/images/bg-login-left.jpg);
+   background-size: cover;
+   background-repeat: no-repeat;
+}
+
+.login__box--right{
+    width: 65%;
+    background-image: url(./assets/images/bg-login-right.png);
+   background-size: cover;
+   background-repeat: no-repeat;
+}
+
+.login__title{
+margin-bottom: 1.5rem;
+}
+
+.login__title--lg{
+    font-size: 4rem;
+    font-weight: 700;
+}
+
+.login__title--md{
+    font-size: 3rem;
+    font-weight: 700;
+}
+
+
+
+.login__subtitle{
+    font-size: 2.25rem;
+    font-weight: 600;
+    font-style: italic;
+}
+
+.form{
+    width: 35%;
+}
+
+.form__label{
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 0.5rem;
+}
+
+.form__input{
+    background-color: rgba(255, 255, 255, 0.3);
+    outline: none;
+    border: none;
+    padding: 1em;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    color: #ffffff;
+    margin-bottom: 1rem;
+    transition: border 0.3s;
+}
+
+.form__input:focus{
+    border-color: rgba(20, 215, 82, 1);
+}
+
+.form__wrapper .form__input{
+    padding-right: 2.5em !important;
+}
+
+.form__label, .form__input{
+    display: block;
+    width: 100%;
+}
+
+.form__line{
+    background: linear-gradient(270deg, rgba(255, 255, 255, 0.04) 10.95%, rgba(255, 255, 255, 0.4) 52.28%, rgba(255, 255, 255, 0.04) 90%);
+    height: 2px;
+    outline: none;
+    border: none;
+    margin-block: 2rem;
+}
+
+.form__wrapper{
+    position: relative;
+}
+
+.form__icon{
+    width: unset !important;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    outline: none;
+}
+
+.form__action{
+    display: flex;
+    align-items: center;
+    gap: 1rem
+}
+
+.btn {
+    cursor: pointer;
+    width: 50%;
+    border: none;
+    margin: 0;
+    padding: 0;
+    overflow: visible;
+
+    background: transparent;
+
+    /* inherit font & color from ancestor */
+    color: inherit;
+    font: inherit;
+
+    /* Normalize `line-height`. Cannot be changed from `normal` in Firefox 4+. */
+    line-height: normal;
+
+    /* Corrects font smoothing for webkit */
+    -webkit-font-smoothing: inherit;
+    -moz-osx-font-smoothing: inherit;
+
+    /* Corrects inability to style clickable `input` types in iOS */
+    -webkit-appearance: none;
+}
+
+.btn--primary{
+    background-color: rgba(7, 70, 27, 1);
+    color: #ffffff;
+    padding: 0.75rem 1.5rem;
+}
+
+
+.btn--link{
+    color: #ffffff;
 }
