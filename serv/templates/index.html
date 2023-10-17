@@ -88,6 +88,14 @@
             {% endif %}
         </a>
       </th>
+      <th>
+        <a class="text-header" href="?sort=purchase_at&order={% if sort_field == 'purchase_at' and order == 'asc' %}desc{% else %}asc{% endif %}">
+            Purchase Date
+            {% if sort_field == 'purchase_at' %}
+                {% if order == 'asc' %}&uarr;{% else %}&darr;{% endif %}
+            {% endif %}
+        </a>
+      </th>
       <th class="centering">
         <a class="text-header" href="?sort=assignee&order={% if sort_field == 'assignee' and order == 'asc' %}desc{% else %}asc{% endif %}">
             Assignee
@@ -117,6 +125,7 @@
       <td class="centering">{{ticket.categories}}</td>
 			<td>{{ticket.created_at}}</td>
 			<td>{{ticket.updated_at}}</td>
+            <td>{{ticket.purchase_at}}</td>
       <td class="centering">{{ticket.assignee}}</td>
 		</tr>
 		{% endfor %}

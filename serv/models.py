@@ -66,19 +66,22 @@ class Ticket(models.Model):
     assignee = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE)
     status = models.CharField(max_length=25, choices=TicketStatus.choices, default=TicketStatus.TODO)
     description = models.TextField()
-    media = models.FileField(upload_to="media/", default=None, null=True, blank=True)
+    media_st = models.FileField(upload_to="media/", default=None, null=True, blank=True)
+    media_nd = models.FileField(upload_to="media/", default=None, null=True, blank=True)
+    media_rd = models.FileField(upload_to="media/", default=None, null=True, blank=True)
     location = models.CharField(max_length=25, choices=LocationChoices.choices, default=LocationChoices.JAKARTA)
     categories = models.CharField(max_length=25, choices=CategoryType.choices, default=CategoryType.PURCHASING)
     created_at = models.DateTimeField('created at', auto_now_add=True)
     updated_at = models.DateTimeField('updated at', auto_now=True)
+    purchase_at = models.DateTimeField('purchase at', default=None, null=True, blank=True)
 
     def save(self, *args, **kwargs):
         # Check if the object is being created for the first time
         if not self.id:
             category_prefix = self.categories[:3].upper()
-            location_prefix = self.location[:3].upper()
+            location_prefix = self.location[:20].upper()
             existing_count = Ticket.objects.filter(categories=self.categories, location=self.location).count()
-            sequence_id = f"{category_prefix}/{existing_count + 1}/{location_prefix}"
+            sequence_id = f"{category_prefix}-{existing_count + 1}-{location_prefix}"
             self.id = sequence_id
 
         super().save(*args, **kwargs)
