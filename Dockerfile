@@ -14,4 +14,4 @@ RUN poetry install
 
 COPY . /app/
 
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8444"]
+CMD ["python", "manage.py", "migrate"]

@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <main class="p-3">
+      <div class="d-flex justify-content-between mb-3 mt-4">
+        <!-- Search Form -->
+        <form method="get" action=".">
+            <div class="input-group ml-3">
+                <input type="text" class="form-control" name="search" placeholder="Search for Leader..." value="{{ request.GET.search|default:'' }}">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="submit"><i class="search"></i></button>
+                </div>
+            </div>
+        </form>
+
+        <!-- Add Ticket Button -->
+        <button type="button" class="custom-button-orange mr-3" data-toggle="modal" data-target="#addLeaderModal">
+            + Add Leader
+        </button>
+      </div>
+      <div class="modal fade" id="addLeaderModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title">New Leader</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                      </button>
+                  </div>
+                  <div class="modal-body">
+                      <form method="post" action="{% url 'add_elder' %}" enctype="multipart/form-data">
+                          {% csrf_token %}
+                          {{ form.as_p }}
+                          <button type="submit" class="custom-button-orange">Send</button>
+                      </form>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="container mt-3">
+        <div class="row">
+          {% for lead in elders %}
+          <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+            <div class="neumorph-card p-4">
+              <h6 class="neumorph-card-title px-2 py-1 d-flex align-items-center justify-content-between mb-4">
+                <span>Location :</span> {{ lead.location }}
+              </h6>
+              <ul class="aligned-list">
+                <li><b>Name</b> {{ lead.name }}</li>
+                <li><b>Contact</b> {{ lead.contact }}</li>
+              </ul>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </main>
+{% endblock %}

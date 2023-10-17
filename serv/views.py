@@ -3,8 +3,8 @@ from django.db.models import Q
 from django.shortcuts import render, redirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import HttpResponse
-from .models import Ticket
-from .forms import TicketForm, LoginForm
+from .models import Ticket, ContactRelation, ContactLeader
+from .forms import TicketForm, LoginForm, ProviderForm, LeaderForm
 from django.contrib.auth.views import LoginView
 
 
@@ -90,3 +90,107 @@ def upload_media(request):
         form = TicketForm()
 
     return render(request, 'add_ticket.html', {'form': form})
+
+
+def list_provider(request):
+    queries = request.GET.get('search', '')
+    sort_field = request.GET.get('sort', 'created_at')
+    order = request.GET.get('order', 'desc')
+
+    if queries:
+        provider_list = ContactRelation.objects.filter(Q(provider__icontains=queries))
+
+    else:
+        provider_list = ContactRelation.objects.all()
+
+    if order == 'desc':
+        sort_field = '-' + sort_field
+
+    provider_list = provider_list.order_by(sort_field)
+    paginator = Paginator(provider_list, 10)
+    page = request.GET.get('page')
+
+    try:
+        providers = paginator.page(page)
+
+    except PageNotAnInteger:
+        providers = paginator.page(1)
+
+    except EmptyPage:
+        providers = paginator.page(paginator.num_pages)
+
+    form = ProviderForm()
+    context = {
+        'providers': providers,
+        'form': form,
+        'sort_field': sort_field.replace('-', ''),
+        'order': order
+    }
+
+    return render(request, 'list_provider.html', context)
+
+
+def add_provider(request):
+    if request.method == 'POST':
+        form = ProviderForm(request.POST, request.FILES)
+
+        if form.is_valid():
+            form.save()
+            return redirect('provider_list')
+
+    else:
+        form = ProviderForm()
+
+    return render(request, {'form': form})
+
+
+def list_elder(request):
+    queries = request.GET.get('search', '')
+    sort_field = request.GET.get('sort', 'created_at')
+    order = request.GET.get('order', 'desc')
+
+    if queries:
+        elder_list = ContactLeader.objects.filter(Q(name__icontains=queries))
+
+    else:
+        elder_list = ContactLeader.objects.all()
+
+    if order == 'desc':
+        sort_field = '-' + sort_field
+
+    elder_list = elder_list.order_by(sort_field)
+    paginator = Paginator(elder_list, 10)
+    page = request.GET.get('page')
+
+    try:
+        elders = paginator.page(page)
+
+    except PageNotAnInteger:
+        elders = paginator.page(1)
+
+    except EmptyPage:
+        elders = paginator.page(paginator.num_pages)
+
+    form = LeaderForm()
+    context = {
+        'elders': elders,
+        'form': form,
+        'sort_field': sort_field.replace('-', ''),
+        'order': order
+    }
+
+    return render(request, 'list_leader.html', context)
+
+
+def add_elder(request):
+    if request.method == 'POST':
+        form = LeaderForm(request.POST, request.FILES)
+
+        if form.is_valid():
+            form.save()
+            return redirect('elder_list')
+
+    else:
+        form = LeaderForm()
+
+    return render(request, {'form': form})

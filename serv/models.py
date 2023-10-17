@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-
+from django.db.models import Max, F, IntegerField, Value, ExpressionWrapper
 from phonenumber_field.modelfields import PhoneNumberField
 
 
@@ -61,15 +61,27 @@ class CategoryType(models.TextChoices):
 
 
 class Ticket(models.Model):
+    id = models.CharField(max_length=20, primary_key=True, editable=False)
     title = models.CharField(max_length=100)
     assignee = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE)
     status = models.CharField(max_length=25, choices=TicketStatus.choices, default=TicketStatus.TODO)
     description = models.TextField()
-    media = models.FileField(upload_to="media/", default=None, null=True)
+    media = models.FileField(upload_to="media/", default=None, null=True, blank=True)
     location = models.CharField(max_length=25, choices=LocationChoices.choices, default=LocationChoices.JAKARTA)
     categories = models.CharField(max_length=25, choices=CategoryType.choices, default=CategoryType.PURCHASING)
     created_at = models.DateTimeField('created at', auto_now_add=True)
     updated_at = models.DateTimeField('updated at', auto_now=True)
+
+    def save(self, *args, **kwargs):
+        # Check if the object is being created for the first time
+        if not self.id:
+            category_prefix = self.categories[:3].upper()
+            location_prefix = self.location[:3].upper()
+            existing_count = Ticket.objects.filter(categories=self.categories, location=self.location).count()
+            sequence_id = f"{category_prefix}/{existing_count + 1}/{location_prefix}"
+            self.id = sequence_id
+
+        super().save(*args, **kwargs)
 
 
 class ContactRelation(models.Model):

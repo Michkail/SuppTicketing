@@ -1,5 +1,5 @@
 from django import forms
-from .models import Ticket
+from .models import Ticket, ContactRelation, ContactLeader
 from django.contrib.auth.forms import AuthenticationForm
 
 
@@ -14,11 +14,31 @@ class TicketForm(forms.ModelForm):
             'location': forms.Select(attrs={'class': 'form-control'}),
             'categories': forms.Select(attrs={'class': 'form-control'}),
             'description': forms.Textarea(attrs={'class': 'form-control'}),
-            'media': forms.ClearableFileInput(attrs={'class': 'form-control-file'}),
+            'media': forms.ClearableFileInput(attrs={'class': 'form-control-file'})
+        }
 
 
-            'provider': forms.TextInput(attrs={'class': 'form-control-file'}),
-            'contact': forms.TextInput(attrs={'class': 'form-control-file'}),
+class ProviderForm(forms.ModelForm):
+    class Meta:
+        model = ContactRelation
+        fields = ['provider', 'contact', 'address', 'maps', 'id_customer']
+        widgets = {
+            'provider': forms.TextInput(attrs={'class': 'form-control'}),
+            'contact': forms.NumberInput(attrs={'class': 'form-control'}),
+            'address': forms.TextInput(attrs={'class': 'form-control'}),
+            'maps': forms.URLInput(attrs={'class': 'form-control'}),
+            'id_customer': forms.TextInput(attrs={'class': 'form-control'})
+        }
+
+
+class LeaderForm(forms.ModelForm):
+    class Meta:
+        model = ContactLeader
+        fields = ['name', 'contact', 'location']
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
+            'contact': forms.NumberInput(attrs={'class': 'form-control'}),
+            'location': forms.Select(attrs={'class': 'form-control'})
         }
 
 

@@ -4,10 +4,10 @@
 <div class="d-flex justify-content-between mb-3 mt-4">
     <!-- Search Form -->
     <form method="get" action=".">
-        <div class="input-group  ml-3">
+        <div class="input-group ml-3">
             <input type="text" class="form-control" name="search" placeholder="Search for ticket..." value="{{ request.GET.search|default:'' }}">
             <div class="input-group-append">
-                <button class="btn btn-outline-secondary" type="submit">Search</button>
+                <button class="btn btn-outline-secondary" type="submit"><i class="search"></i></button>
             </div>
         </div>
     </form>
