@@ -11,7 +11,9 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 import os
 from pathlib import Path
+from dotenv import load_dotenv
 
+load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -20,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'l5f9c=xo%vvpthmk-(4r2ui1&9l4t!pharo$p&#ypi#ukz120o'
+SECRET_KEY = os.getenv('OUR_SECRET')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -83,11 +85,11 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         # 'HOST': 'host.docker.internal',
-        'HOST': '0.0.0.0',
-        'PORT': '5432',
-        'NAME': 'Ticketing',
-        'USER': 'admin',
-        'PASSWORD': 'admin'
+        'HOST': os.getenv('DB_HOST'),
+        'PORT': os.getenv('DB_PORT'),
+        'NAME': os.getenv('DB_NAME'),
+        'USER': os.getenv('DB_USER'),
+        'PASSWORD': os.getenv('DB_PASSWORD')
     }
 }
 
@@ -142,9 +144,9 @@ LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = 'login'
 
-AWS_ACCESS_KEY_ID = '1i7RSmBNNmfL7E0V'
-AWS_SECRET_ACCESS_KEY = 'OyMcsfwxdPSXNgQtxvcZnfG3U7I9hhZ7'
-AWS_STORAGE_BUCKET_NAME = 'report'
-AWS_S3_ENDPOINT_URL = 'http://100.103.184.131:9000'
+AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS')
+AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET')
+AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET')
+AWS_S3_ENDPOINT_URL = os.getenv('AWS_ENDPOINT')
 
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'

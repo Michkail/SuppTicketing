@@ -1,3 +1,7 @@
+import uuid
+
+from django.core.exceptions import ValidationError
+from django.core.validators import FileExtensionValidator
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models import Max, F, IntegerField, Value, ExpressionWrapper
@@ -5,6 +9,18 @@ from phonenumber_field.modelfields import PhoneNumberField
 
 
 # Create your models here.
+def generate_unique_media_filename(instance, filename):
+    """
+    Generate a unique filename by appending a UUID to the original filename.
+    """
+    ext = filename.split('.')[-1].lower()  # Get the file extension in lowercase
+    allowed_extensions = ['jpg', 'jpeg', 'png', 'gif', 'mp4', 'mov', 'avi']  # Add more as needed
+    if ext not in allowed_extensions:
+        raise ValidationError("Invalid file extension.")
+    unique_filename = f"{uuid.uuid4()}.{ext}"
+    return unique_filename
+
+
 class TicketStatus(models.TextChoices):
     TODO = 'Todo'
     IN_PROGRESS = 'In Progress'
@@ -66,9 +82,17 @@ class Ticket(models.Model):
     assignee = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE)
     status = models.CharField(max_length=25, choices=TicketStatus.choices, default=TicketStatus.TODO)
     description = models.TextField()
-    media_st = models.FileField(upload_to="media/", default=None, null=True, blank=True)
-    media_nd = models.FileField(upload_to="media/", default=None, null=True, blank=True)
-    media_rd = models.FileField(upload_to="media/", default=None, null=True, blank=True)
+    media_st = models.FileField(upload_to=generate_unique_media_filename, default=None, null=True, blank=True,
+                                validators=[FileExtensionValidator(allowed_extensions=['jpg', 'jpeg', 'png',
+                                                                                       'mp4', 'mov', 'avi'])])
+
+    media_nd = models.FileField(upload_to=generate_unique_media_filename, default=None, null=True, blank=True,
+                                validators=[FileExtensionValidator(allowed_extensions=['jpg', 'jpeg', 'png',
+                                                                                       'mp4', 'mov', 'avi'])])
+
+    media_rd = models.FileField(upload_to=generate_unique_media_filename, default=None, null=True, blank=True,
+                                validators=[FileExtensionValidator(allowed_extensions=['jpg', 'jpeg', 'png',
+                                                                                       'mp4', 'mov', 'avi'])])
     location = models.CharField(max_length=25, choices=LocationChoices.choices, default=LocationChoices.JAKARTA)
     categories = models.CharField(max_length=25, choices=CategoryType.choices, default=CategoryType.PURCHASING)
     created_at = models.DateTimeField('created at', auto_now_add=True)
