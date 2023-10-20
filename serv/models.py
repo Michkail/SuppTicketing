@@ -77,7 +77,7 @@ class CategoryType(models.TextChoices):
 
 
 class Ticket(models.Model):
-    id = models.CharField(max_length=20, primary_key=True, editable=False)
+    id = models.CharField(max_length=50, primary_key=True, editable=False)
     title = models.CharField(max_length=100)
     assignee = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE)
     status = models.CharField(max_length=25, choices=TicketStatus.choices, default=TicketStatus.TODO)
