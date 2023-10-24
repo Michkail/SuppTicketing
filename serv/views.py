@@ -3,6 +3,8 @@ from django.db.models import Q
 from django.shortcuts import render, redirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import HttpResponse
+from django.utils import timezone
+
 from .models import Ticket, ContactRelation, ContactLeader
 from .forms import TicketForm, LoginForm, ProviderForm, LeaderForm
 from django.contrib.auth.views import LoginView
@@ -62,7 +64,10 @@ def add_ticket(request):
         form = TicketForm(request.POST, request.FILES)
 
         if form.is_valid():
-            form.save()
+            ticket = form.save(commit=False)  # Tambahkan commit=False untuk menunda penyimpanan sementara
+            ticket.created_at = timezone.now()  # Atur created_at ke waktu sekarang
+            ticket.save()  # Semarang Anda dapat menyimpan objek
+
             return redirect('index')
 
     else:
