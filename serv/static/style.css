@@ -374,15 +374,13 @@ margin-bottom: 1.5rem;
 
 .aligned-list b {
   display: inline-block;
-  width: 35%;
   position: relative;
-  padding-right: 10px; /* Ensures colon does not overlay the text */
+  padding-right: 2px; /* Ensures colon does not overlay the text */
 }
 
-.aligned-list b::after {
-  content: ":";
+.aligned-list b::after {;
   position: absolute;
-  right: 10px;
+  right: 2px;
 }
 
 .neumorph-card {

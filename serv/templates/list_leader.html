@@ -41,10 +41,10 @@
       <div class="container mt-3">
         <div class="row">
           {% for lead in elders %}
-          <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+          <div class="col-12 col-sm-6 col-md-4 col-lg-4 mb-4">
             <div class="neumorph-card p-4">
               <h6 class="neumorph-card-title px-2 py-1 d-flex align-items-center justify-content-between mb-4">
-                <span>Location :</span> {{ lead.location }}
+                {{ lead.location }}
               </h6>
               <ul class="aligned-list">
                 <li><b>Name</b> {{ lead.name }}</li>
