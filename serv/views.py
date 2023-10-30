@@ -112,7 +112,7 @@ def list_provider(request):
         sort_field = '-' + sort_field
 
     provider_list = provider_list.order_by(sort_field)
-    paginator = Paginator(provider_list, 10)
+    paginator = Paginator(provider_list, 50)
     page = request.GET.get('page')
 
     try:
@@ -164,7 +164,7 @@ def list_elder(request):
         sort_field = '-' + sort_field
 
     elder_list = elder_list.order_by(sort_field)
-    paginator = Paginator(elder_list, 10)
+    paginator = Paginator(elder_list, 20)
     page = request.GET.get('page')
 
     try:
