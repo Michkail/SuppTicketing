@@ -1,45 +1,331 @@
-{% extends 'base.html' %}
-{% block title %} Ticket #{{ticket.id}} {% endblock %}
+{% extends 'base.html' %} {% block title %} Ticket #{{ticket.id}} {% endblock %}
 {% block content %}
 <div class="ticket">
-	<table class="styled-table">
-	<h2> Ticket #{{ticket.id}}</h2>
-	<tbody>
-		<tr>
-			<td>Title</td>
-			<td>{{ticket.title}}</td>
-		</tr>
-		<tr>
-			<td>Status</td>
-			<td>
-					{% if ticket.status == "Todo" %}
-              <span class="status-todo centering">{{ticket.status}}</span>
+	
+  <table class="styled-table">
+    <h2>Ticket #{{ticket.id}}</h2>
+    <tbody>
+      <tr>
+        <td>Title</td>
+        <td>{{ticket.title}}</td>
+      </tr>
+      <tr>
+        <td>Status</td>
+        <td>
+          {% if ticket.status == "Todo" %}
+          <span class="status-todo centering">{{ticket.status}}</span>
           {% elif ticket.status == "In Review" %}
-              <span class="status-in-review">{{ticket.status}}</span>
+          <span class="status-in-review">{{ticket.status}}</span>
           {% elif ticket.status == "In Progress" %}
-              <span class="status-in-progress">{{ticket.status}}</span>
+          <span class="status-in-progress">{{ticket.status}}</span>
           {% elif ticket.status == "Done" %}
-              <span class="status-done">{{ticket.status}}</span>
+          <span class="status-done">{{ticket.status}}</span>
           {% endif %}
-			</td>
-		</tr>
-		<tr>
-			<td>Assignee</td>
-			<td>{{ticket.assignee}}</td>
-		</tr>
-		<tr>
-			<td>Description</td>
-			<td>{{ticket.description}}</td>
-		</tr>
-		<tr>
-			<td>Created At</td>
-			<td>{{ticket.created_at}}</td>
-		</tr>
-		<tr>
-			<td>Updated At</td>
-			<td>{{ticket.updated_at}}x
-		</tr>
-	</tbody>
-	</table>
+        </td>
+      </tr>
+      <tr>
+        <td>Assignee</td>
+        <td>{{ticket.assignee}}</td>
+      </tr>
+      <tr>
+        <td>Description</td>
+        <td>{{ticket.description}}</td>
+      </tr>
+      <tr>
+        <td>Created At</td>
+        <td>{{ticket.created_at}}</td>
+      </tr>
+      <tr>
+        <td>Updated At</td>
+        <td>{{ticket.updated_at}}x</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="d-flex justify-content-end mt-3">
+		<button type="button" class="custom-button-orange mr-3" data-toggle="modal" data-target="#editTicketModal">
+			Edit Ticket
+		</button>
+	</div>
+  
+
+	<div class="modal fade" id="editTicketModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Edit Ticket</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form method="post" action="{% url 'add_ticket' %}" enctype="multipart/form-data">
+						<label for="title">Title</label>
+						<div class="input-group mb-3">
+							<input type="text" class="form-control" placeholder="Title" aria-label="Title" aria-describedby="basic-addon1">
+						</div>
+						<label for="description">Description</label>
+						<textarea class="form-control mb-3" id="exampleFormControlTextarea1" rows="3"></textarea>
+						<label for="description">Assignee</label>
+						<select class="form-control mb-3">
+							<option>Default select</option>
+						</select>
+
+						<button type="submit" class="custom-button-orange">Send</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+  
+  	<div class="container-fluid mt-3">
+		<h5 class="font-weight-bold">Comment Section</h5>
+		<div class="d-flex justify-content-between mt-4">
+		<div>
+			<h6 class="font-weight-bold">16 Comment</h6>
+		</div>
+		<div class="d-flex align-items-center">
+			<div>
+			<h6 class="mb-0 mr-2">Sort by</h6>
+			</div>
+			<div class="dropdown">
+				
+				<button type="button" class="btn btn-secondary  filter-comment"data-toggle="dropdown" aria-expanded="false">
+					Oldest
+					<svg width="9" height="12" viewBox="0 0 6 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M2.77322 0.761862C2.89285 0.623723 3.10715 0.623723 3.22678 0.761862L5.16818 3.0036C5.33645 3.1979 5.19843 3.5 4.94141 3.5H1.05859C0.801569 3.5 0.663553 3.1979 0.831816 3.0036L2.77322 0.761862Z" fill="#4B4F56"/>
+						<path d="M2.77322 7.23814C2.89285 7.37628 3.10715 7.37628 3.22678 7.23814L5.16818 4.9964C5.33645 4.8021 5.19843 4.5 4.94141 4.5H1.05859C0.801569 4.5 0.663553 4.8021 0.831816 4.9964L2.77322 7.23814Z" fill="#4B4F56"/>
+					</svg>
+				</button>
+				<div class="dropdown-menu">
+					<a class="dropdown-item" href="#">Oldest</a>
+					<a class="dropdown-item" href="#">Latest</a>
+				</div>
+			</div>
+		</div>
+		</div>
+    <hr />
+	</div>
+	<div class="container-fluid mt-3">
+		<div class="card card-comment border-0">
+		  <div class="container-fluid">
+			<div class="d-flex justify-content-between mt-2 px-2 py-2">
+			  <div class="d-flex align-items-center gap-2">
+				<h6 class="username-comment mb-0">admin</h6>
+				<p class="fw-medium mb-0 ml-2">1 hours ago</p>
+			  </div>
+			  <button type="button" class="btn btn-success btn-sm reply-comment">
+				<svg
+				  width="14"
+				  height="13"
+				  viewBox="0 0 14 13"
+				  fill="none"
+				  xmlns="http://www.w3.org/2000/svg"
+				>
+				  <path
+					d="M0.227189 4.31583L5.0398 0.159982C5.46106 -0.203822 6.125 0.0915222 6.125 0.656646V2.8456C10.5172 2.89589 14 3.77618 14 7.93861C14 9.61864 12.9177 11.283 11.7214 12.1532C11.348 12.4247 10.816 12.0839 10.9536 11.6437C12.1935 7.67857 10.3655 6.62588 6.125 6.56484V8.96878C6.125 9.5348 5.46056 9.82883 5.0398 9.46545L0.227189 5.30918C-0.0755195 5.04772 -0.0759395 4.57766 0.227189 4.31583Z"
+					fill="#fff"
+				  />
+				</svg>
+				Reply
+			  </button>
+			</div>
+			<div class="mt-2 px-2 py-1">
+			  <p>
+				Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+				Necessitatibus recusandae enim vero. Eum praesentium dolore unde
+				dolorem quaerat itaque. Ducimus sint modi laboriosam rerum eius quas
+				nihil facere. Quas, reiciendis?
+			  </p>
+			</div>
+		  </div>
+		</div>
+	</div>
+    <div class="container-fluid mt-3">
+      <div class="row mt-2">
+        <div class="col-sm-1">
+          <div class="v1"></div>
+        </div>
+        <div class="col-sm-11">
+          <div class="card card-comment border-0">
+            <div class="container-fluid">
+              <div class="d-flex justify-content-between mt-2 px-2 py-2">
+                <div class="d-flex align-items-center gap-2">
+
+                  <h6 class="username-comment mb-0">admin</h6>
+                  <p class="fw-medium mb-0 ml-2">1 hours ago</p>
+                </div>
+                <button
+                  type="button"
+                  class="btn btn-success btn-sm reply-comment"
+                >
+                  <svg
+                    width="14"
+                    height="13"
+                    viewBox="0 0 14 13"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M0.227189 4.31583L5.0398 0.159982C5.46106 -0.203822 6.125 0.0915222 6.125 0.656646V2.8456C10.5172 2.89589 14 3.77618 14 7.93861C14 9.61864 12.9177 11.283 11.7214 12.1532C11.348 12.4247 10.816 12.0839 10.9536 11.6437C12.1935 7.67857 10.3655 6.62588 6.125 6.56484V8.96878C6.125 9.5348 5.46056 9.82883 5.0398 9.46545L0.227189 5.30918C-0.0755195 5.04772 -0.0759395 4.57766 0.227189 4.31583Z"
+                      fill="#fff"
+                    />
+                  </svg>
+                  Reply
+                </button>
+              </div>
+              <div class="mt-2 px-2 py-1">
+                <p>
+                  Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                  Necessitatibus recusandae enim vero. Eum praesentium dolore
+                  unde dolorem quaerat itaque. Ducimus sint modi laboriosam
+                  rerum eius quas nihil facere. Quas, reiciendis?
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-2">
+        <div class="col-sm-1">
+          <div class="v1"></div>
+        </div>
+        <div class="col-sm-11">
+          <div class="card card-comment border-0">
+            <div class="container-fluid">
+              <div class="d-flex justify-content-between mt-2 px-2 py-2">
+                <div class="d-flex align-items-center gap-2">
+
+                  <h6 class="username-comment mb-0">admin</h6>
+                  <p class="fw-medium mb-0 ml-2">1 hours ago</p>
+                </div>
+                <button
+                  type="button"
+                  class="btn btn-success btn-sm reply-comment"
+                >
+                  <svg
+                    width="14"
+                    height="13"
+                    viewBox="0 0 14 13"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M0.227189 4.31583L5.0398 0.159982C5.46106 -0.203822 6.125 0.0915222 6.125 0.656646V2.8456C10.5172 2.89589 14 3.77618 14 7.93861C14 9.61864 12.9177 11.283 11.7214 12.1532C11.348 12.4247 10.816 12.0839 10.9536 11.6437C12.1935 7.67857 10.3655 6.62588 6.125 6.56484V8.96878C6.125 9.5348 5.46056 9.82883 5.0398 9.46545L0.227189 5.30918C-0.0755195 5.04772 -0.0759395 4.57766 0.227189 4.31583Z"
+                      fill="#fff"
+                    />
+                  </svg>
+                  Reply
+                </button>
+              </div>
+              <div class="mt-2 px-2 py-1">
+                <p>
+                  Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                  Necessitatibus recusandae enim vero. Eum praesentium dolore
+                  unde dolorem quaerat itaque. Ducimus sint modi laboriosam
+                  rerum eius quas nihil facere. Quas, reiciendis?
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-2">
+        <div class="col-sm-1">
+          <div class="v1"></div>
+        </div>
+        <div class="col-sm-11">
+          <div class="card card-comment border-0">
+            <div class="container-fluid">
+              <div class="d-flex justify-content-between mt-2 px-2 py-2">
+                <div class="d-flex align-items-center gap-2">
+
+                  <h6 class="username-comment mb-0">admin</h6>
+                  <p class="fw-medium mb-0 ml-2">1 hours ago</p>
+                </div>
+                <button
+                  type="button"
+                  class="btn btn-success btn-sm reply-comment"
+                >
+                  <svg
+                    width="14"
+                    height="13"
+                    viewBox="0 0 14 13"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M0.227189 4.31583L5.0398 0.159982C5.46106 -0.203822 6.125 0.0915222 6.125 0.656646V2.8456C10.5172 2.89589 14 3.77618 14 7.93861C14 9.61864 12.9177 11.283 11.7214 12.1532C11.348 12.4247 10.816 12.0839 10.9536 11.6437C12.1935 7.67857 10.3655 6.62588 6.125 6.56484V8.96878C6.125 9.5348 5.46056 9.82883 5.0398 9.46545L0.227189 5.30918C-0.0755195 5.04772 -0.0759395 4.57766 0.227189 4.31583Z"
+                      fill="#fff"
+                    />
+                  </svg>
+                  Reply
+                </button>
+              </div>
+              <div class="mt-2 px-2 py-1">
+                <p>
+                  Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                  Necessitatibus recusandae enim vero. Eum praesentium dolore
+                  unde dolorem quaerat itaque. Ducimus sint modi laboriosam
+                  rerum eius quas nihil facere. Quas, reiciendis?
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+	<div class="container-fluid mt-3 mb-3">
+		<div class="card card-comment border-0 mt-3">
+		  <div class="container-fluid">
+			<div class="d-flex justify-content-between mt-2 px-2 py-2">
+			  <div class="d-flex align-items-center gap-1">
+				<h6 class="username-comment mb-0">admin</h6>
+				<p class="fw-medium mb-0 ml-2">1 hours ago</p>
+				<span class="ml-2 mt-1 badge bg-primary text-white">You</span>
+			  </div>
+			  <button type="button" class="btn btn-success btn-sm reply-comment">
+				<svg
+				  width="14"
+				  height="13"
+				  viewBox="0 0 14 13"
+				  fill="none"
+				  xmlns="http://www.w3.org/2000/svg"
+				>
+				  <path
+					d="M0.227189 4.31583L5.0398 0.159982C5.46106 -0.203822 6.125 0.0915222 6.125 0.656646V2.8456C10.5172 2.89589 14 3.77618 14 7.93861C14 9.61864 12.9177 11.283 11.7214 12.1532C11.348 12.4247 10.816 12.0839 10.9536 11.6437C12.1935 7.67857 10.3655 6.62588 6.125 6.56484V8.96878C6.125 9.5348 5.46056 9.82883 5.0398 9.46545L0.227189 5.30918C-0.0755195 5.04772 -0.0759395 4.57766 0.227189 4.31583Z"
+					fill="#fff"
+				  />
+				</svg>
+				Reply
+			  </button>
+			</div>
+			<div class="mt-2 px-2 py-1">
+			  <p>
+				Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+				Necessitatibus recusandae enim vero. Eum praesentium dolore unde
+				dolorem quaerat itaque. Ducimus sint modi laboriosam rerum eius quas
+				nihil facere. Quas, reiciendis?
+			  </p>
+			</div>
+		  </div>
+		</div>
+	</div>
+	<div class="card rounded-0">
+		<div class="container-fluid mb-3">
+			<h5 class="mt-3">Submit your comment!</h5>
+			<div class="row mt-4 mb-3">
+				<div class="col-md-12">
+					<div class="px-4">
+						<textarea placeholder="Add Comment" class="input-comment px-2 py-2" name="" id="" cols="30" rows="10"></textarea>
+					</div>
+				</div>
+			</div>
+			<div class="d-flex justify-content-end px-4">
+				<button type="button" class="btn btn-success submit-comment">Send Comment</button>
+			</div>
+		</div>
+    </div>
+  </div>
 </div>
+
 {% endblock %}

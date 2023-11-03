@@ -1,10 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap");
 
-*, *::before, *::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 :root,
@@ -12,7 +13,6 @@ body,
 html {
   height: 100%;
 }
-
 
 .header {
   overflow: hidden;
@@ -178,149 +178,153 @@ body {
   font-family: "Inter", sans-serif;
 }
 
-.login{
-    display: flex;
-    height: 100%;
+.login {
+  display: flex;
+  height: 100%;
 }
 
-.login__box{
-    color: #ffffff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.login__box {
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.login__box--left{
-    width: 35%;
-    background: linear-gradient(0deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(./assets/images/bg-login-left.jpg);
-   background-size: cover;
-   background-repeat: no-repeat;
+.login__box--left {
+  width: 35%;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    url(./assets/images/bg-login-left.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
-.login__box--right{
-    width: 65%;
-    background-image: url(./assets/images/bg-login-right.png);
-   background-size: cover;
-   background-repeat: no-repeat;
+.login__box--right {
+  width: 65%;
+  background-image: url(./assets/images/bg-login-right.png);
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
-.login__title{
-margin-bottom: 1.5rem;
+.login__title {
+  margin-bottom: 1.5rem;
 }
 
-.login__title--lg{
-    font-size: 4rem;
-    font-weight: 700;
+.login__title--lg {
+  font-size: 4rem;
+  font-weight: 700;
 }
 
-.login__title--md{
-    font-size: 3rem;
-    font-weight: 700;
+.login__title--md {
+  font-size: 3rem;
+  font-weight: 700;
 }
 
-
-
-.login__subtitle{
-    font-size: 2.25rem;
-    font-weight: 600;
-    font-style: italic;
+.login__subtitle {
+  font-size: 2.25rem;
+  font-weight: 600;
+  font-style: italic;
 }
 
-.form{
-    width: 35%;
+.form {
+  width: 35%;
 }
 
-.form__label{
-    color: rgba(255, 255, 255, 0.5);
-    margin-bottom: 0.5rem;
+.form__label {
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 0.5rem;
 }
 
-.form__input{
-    background-color: rgba(255, 255, 255, 0.3);
-    outline: none;
-    border: none;
-    padding: 1em;
-    border: 2px solid rgba(255, 255, 255, 0.5);
-    color: #ffffff;
-    margin-bottom: 1rem;
-    transition: border 0.3s;
+.form__input {
+  background-color: rgba(255, 255, 255, 0.3);
+  outline: none;
+  border: none;
+  padding: 1em;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  color: #ffffff;
+  margin-bottom: 1rem;
+  transition: border 0.3s;
 }
 
-.form__input:focus{
-    border-color: rgba(20, 215, 82, 1);
+.form__input:focus {
+  border-color: rgba(20, 215, 82, 1);
 }
 
-.form__wrapper .form__input{
-    padding-right: 2.5em !important;
+.form__wrapper .form__input {
+  padding-right: 2.5em !important;
 }
 
-.form__label, .form__input{
-    display: block;
-    width: 100%;
+.form__label,
+.form__input {
+  display: block;
+  width: 100%;
 }
 
-.form__line{
-    background: linear-gradient(270deg, rgba(255, 255, 255, 0.04) 10.95%, rgba(255, 255, 255, 0.4) 52.28%, rgba(255, 255, 255, 0.04) 90%);
-    height: 2px;
-    outline: none;
-    border: none;
-    margin-block: 2rem;
+.form__line {
+  background: linear-gradient(
+    270deg,
+    rgba(255, 255, 255, 0.04) 10.95%,
+    rgba(255, 255, 255, 0.4) 52.28%,
+    rgba(255, 255, 255, 0.04) 90%
+  );
+  height: 2px;
+  outline: none;
+  border: none;
+  margin-block: 2rem;
 }
 
-.form__wrapper{
-    position: relative;
+.form__wrapper {
+  position: relative;
 }
 
-.form__icon{
-    width: unset !important;
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    border: none;
-    outline: none;
+.form__icon {
+  width: unset !important;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  outline: none;
 }
 
-.form__action{
-    display: flex;
-    align-items: center;
-    gap: 1rem
+.form__action {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
 .btn {
-    cursor: pointer;
-    width: 50%;
-    border: none;
-    margin: 0;
-    padding: 0;
-    overflow: visible;
+  cursor: pointer;
+  width: 50%;
+  border: none;
+  margin: 0;
+  padding: 0;
+  overflow: visible;
 
-    background: transparent;
+  background: transparent;
 
-    /* inherit font & color from ancestor */
-    color: inherit;
-    font: inherit;
+  /* inherit font & color from ancestor */
+  color: inherit;
+  font: inherit;
 
-    /* Normalize `line-height`. Cannot be changed from `normal` in Firefox 4+. */
-    line-height: normal;
+  /* Normalize `line-height`. Cannot be changed from `normal` in Firefox 4+. */
+  line-height: normal;
 
-    /* Corrects font smoothing for webkit */
-    -webkit-font-smoothing: inherit;
-    -moz-osx-font-smoothing: inherit;
+  /* Corrects font smoothing for webkit */
+  -webkit-font-smoothing: inherit;
+  -moz-osx-font-smoothing: inherit;
 
-    /* Corrects inability to style clickable `input` types in iOS */
-    -webkit-appearance: none;
+  /* Corrects inability to style clickable `input` types in iOS */
+  -webkit-appearance: none;
 }
 
-.btn--primary{
-    background-color: rgba(7, 70, 27, 1);
-    color: #ffffff;
-    padding: 0.75rem 1.5rem;
+.btn--primary {
+  background-color: rgba(7, 70, 27, 1);
+  color: #ffffff;
+  padding: 0.75rem 1.5rem;
 }
 
-
-.btn--link{
-    color: #ffffff;
+.btn--link {
+  color: #ffffff;
 }
 
 .navbar {
@@ -360,7 +364,8 @@ margin-bottom: 1.5rem;
   height: 12.5rem;
   flex: 1;
   border-radius: 1.125rem;
-  box-shadow: -12px -12px 14px 0px rgba(255, 255, 255, 0.66), 5px 5px 9px 0px rgba(0, 0, 0, 0.16);
+  box-shadow: -12px -12px 14px 0px rgba(255, 255, 255, 0.66),
+    5px 5px 9px 0px rgba(0, 0, 0, 0.16);
 }
 
 .aligned-list.detail b {
@@ -378,7 +383,7 @@ margin-bottom: 1.5rem;
   padding-right: 2px; /* Ensures colon does not overlay the text */
 }
 
-.aligned-list b::after {;
+.aligned-list b::after {
   position: absolute;
   right: 2px;
 }
@@ -386,20 +391,23 @@ margin-bottom: 1.5rem;
 .neumorph-card {
   border-radius: 1.125rem;
   background: #f2f2f2;
-  box-shadow: -8px -8px 14px 0px rgba(255, 255, 255, 0.7), 4px 4px 9px 0px rgba(0, 0, 0, 0.12);
+  box-shadow: -8px -8px 14px 0px rgba(255, 255, 255, 0.7),
+    4px 4px 9px 0px rgba(0, 0, 0, 0.12);
 }
 
 .neumorph-card-title {
   border-radius: 0.25rem;
   background: #f2f2f2;
-  box-shadow: -8px -8px 8px 0px rgba(255, 255, 255, 0.8), 2px 2px 8px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: -8px -8px 8px 0px rgba(255, 255, 255, 0.8),
+    2px 2px 8px 0px rgba(0, 0, 0, 0.25);
   color: #b5b5b5;
 }
 
 .neumorph-input {
   border: none;
   background: #f2f2f2;
-  box-shadow: -3px -3px 3px 0px rgba(255, 255, 255, 0.55) inset, 2px 2px 4px 0px rgba(0, 0, 0, 0.25) inset;
+  box-shadow: -3px -3px 3px 0px rgba(255, 255, 255, 0.55) inset,
+    2px 2px 4px 0px rgba(0, 0, 0, 0.25) inset;
 }
 
 .neumorph-input.search {
@@ -408,7 +416,8 @@ margin-bottom: 1.5rem;
 
 .neumorph-input:focus {
   background: #f2f2f2;
-  box-shadow: -3px -3px 3px 0px rgba(255, 255, 255, 0.55) inset, 2px 2px 4px 0px rgba(0, 0, 0, 0.25) inset;
+  box-shadow: -3px -3px 3px 0px rgba(255, 255, 255, 0.55) inset,
+    2px 2px 4px 0px rgba(0, 0, 0, 0.25) inset;
 }
 
 .neumorph-input::placeholder {
@@ -418,7 +427,8 @@ margin-bottom: 1.5rem;
 .neumorph-table thead tr,
 .neumorph-table tbody tr {
   background: #f2f2f2;
-  box-shadow: -8px -8px 14px 0px rgba(255, 255, 255, 0.7), 4px 4px 9px 0px rgba(0, 0, 0, 0.12);
+  box-shadow: -8px -8px 14px 0px rgba(255, 255, 255, 0.7),
+    4px 4px 9px 0px rgba(0, 0, 0, 0.12);
 }
 
 .neumorph-table tbody:before {

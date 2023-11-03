@@ -39,7 +39,8 @@ body {
   height: 12.5rem;
   flex: 1;
   border-radius: 1.125rem;
-  box-shadow: -12px -12px 14px 0px rgba(255, 255, 255, 0.66), 5px 5px 9px 0px rgba(0, 0, 0, 0.16);
+  box-shadow: -12px -12px 14px 0px rgba(255, 255, 255, 0.66),
+    5px 5px 9px 0px rgba(0, 0, 0, 0.16);
 }
 
 .aligned-list.detail b {
@@ -65,20 +66,23 @@ body {
 .neumorph-card {
   border-radius: 1.125rem;
   background: #f2f2f2;
-  box-shadow: -8px -8px 14px 0px rgba(255, 255, 255, 0.7), 4px 4px 9px 0px rgba(0, 0, 0, 0.12);
+  box-shadow: -8px -8px 14px 0px rgba(255, 255, 255, 0.7),
+    4px 4px 9px 0px rgba(0, 0, 0, 0.12);
 }
 
 .neumorph-card-title {
   border-radius: 0.25rem;
   background: #f2f2f2;
-  box-shadow: -8px -8px 8px 0px rgba(255, 255, 255, 0.8), 2px 2px 8px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: -8px -8px 8px 0px rgba(255, 255, 255, 0.8),
+    2px 2px 8px 0px rgba(0, 0, 0, 0.25);
   color: #b5b5b5;
 }
 
 .neumorph-input {
   border: none;
   background: #f2f2f2;
-  box-shadow: -3px -3px 3px 0px rgba(255, 255, 255, 0.55) inset, 2px 2px 4px 0px rgba(0, 0, 0, 0.25) inset;
+  box-shadow: -3px -3px 3px 0px rgba(255, 255, 255, 0.55) inset,
+    2px 2px 4px 0px rgba(0, 0, 0, 0.25) inset;
 }
 
 .neumorph-input.search {
@@ -87,7 +91,8 @@ body {
 
 .neumorph-input:focus {
   background: #f2f2f2;
-  box-shadow: -3px -3px 3px 0px rgba(255, 255, 255, 0.55) inset, 2px 2px 4px 0px rgba(0, 0, 0, 0.25) inset;
+  box-shadow: -3px -3px 3px 0px rgba(255, 255, 255, 0.55) inset,
+    2px 2px 4px 0px rgba(0, 0, 0, 0.25) inset;
 }
 
 .neumorph-input::placeholder {
@@ -97,7 +102,8 @@ body {
 .neumorph-table thead tr,
 .neumorph-table tbody tr {
   background: #f2f2f2;
-  box-shadow: -8px -8px 14px 0px rgba(255, 255, 255, 0.7), 4px 4px 9px 0px rgba(0, 0, 0, 0.12);
+  box-shadow: -8px -8px 14px 0px rgba(255, 255, 255, 0.7),
+    4px 4px 9px 0px rgba(0, 0, 0, 0.12);
 }
 
 .neumorph-table tbody:before {
@@ -110,4 +116,42 @@ body {
 
 .cursor-pointer {
   cursor: pointer;
+}
+
+.username-comment {
+  font-weight: bold;
+}
+
+.card-comment {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border-radius: 8px !important;
+}
+
+.reply-comment {
+  width: 85px;
+}
+
+.filter-comment {
+  width: 100px;
+}
+
+.v1 {
+  border-right: 2px solid rgba(233, 235, 240, 1);
+  height: 130px;
+}
+
+.input-comment {
+  border-radius: 8px;
+  border: 1px solid var(--Light-Gray, #e9ebf0);
+  background: var(--White, #fff);
+  width: 100%;
+  height: 150px;
+}
+
+.submit-comment {
+  width: 140px;
+}
+
+dropdown-menu {
+  width: 10px;
 }
