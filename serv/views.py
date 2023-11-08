@@ -1,6 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import HttpResponse
 from django.utils import timezone
@@ -64,9 +64,9 @@ def add_ticket(request):
         form = TicketForm(request.POST, request.FILES)
 
         if form.is_valid():
-            ticket = form.save(commit=False)  # Tambahkan commit=False untuk menunda penyimpanan sementara
-            ticket.created_at = timezone.now()  # Atur created_at ke waktu sekarang
-            ticket.save()  # Semarang Anda dapat menyimpan objek
+            ticket = form.save(commit=False)
+            ticket.created_at = timezone.now()
+            ticket.save()
 
             return redirect('index')
 
@@ -80,6 +80,35 @@ def ticket_by_id(request, ticket_id):
     ticket = Ticket.objects.get(pk=ticket_id)
 
     return render(request, 'ticket_by_id.html', {'ticket': ticket})
+
+
+def edit_ticket(request, ticket_id):
+    ticket = get_object_or_404(Ticket, id=ticket_id)
+
+    if request.method == 'POST':
+        form = TicketForm(request.POST, request.FILES, instance=ticket)
+
+        form.fields['location'].disabled = True
+        form.fields['categories'].disabled = True
+
+        if form.is_valid():
+            form.save()
+            return redirect('ticket_detail', ticket_id=ticket.id)
+
+    else:
+        form = TicketForm(instance=ticket)
+
+    return render(request, {'form': form, 'ticket': ticket})
+
+
+def delete_ticket(request, ticket_id):
+    ticket = get_object_or_404(Ticket, id=ticket_id)
+
+    if request.method == 'POST':
+        ticket.delete()
+        return redirect('index')
+
+    return render(request, 'delete_ticket.html', {'ticket': ticket})
 
 
 def upload_media(request):
