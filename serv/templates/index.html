@@ -109,7 +109,7 @@
 	<tbody>
 		{% for ticket in tickets %}
 		<tr>
-			<td><a href="/ticket/{{ticket.id}}">{{ticket.id}}</td>
+			<td><a href="/ticket/detail/{{ticket.id}}">{{ticket.id}}</td>
 			<td>{{ticket.title}}</td>
 			<td class="centering">
           {% if ticket.status == "Todo" %}

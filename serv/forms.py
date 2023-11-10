@@ -3,7 +3,7 @@ from datetime import datetime
 from django import forms
 from django.forms import DateInput, DateTimeInput
 
-from .models import Ticket, ContactRelation, ContactLeader
+from .models import Ticket, Comment, ContactRelation, ContactLeader
 from django.contrib.auth.forms import AuthenticationForm
 
 
@@ -24,6 +24,14 @@ class TicketForm(forms.ModelForm):
             'media_rd': forms.ClearableFileInput(attrs={'class': 'form-control-file'}),
             'purchase_at': DateTimeInput(attrs={'class': 'form-control', 'type': 'datetime-local'})
         }
+
+
+class CommentForm(forms.ModelForm):
+    model = Comment
+    fields = ['text']
+    widget = {
+        'text': forms.TextInput(attrs={'class': 'form-control'})
+    }
 
 
 class ProviderForm(forms.ModelForm):

@@ -144,9 +144,9 @@ LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = 'login'
 
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
 AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS')
 AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET')
 AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET')
 AWS_S3_ENDPOINT_URL = os.getenv('AWS_ENDPOINT')
-
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'

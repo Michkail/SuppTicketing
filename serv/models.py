@@ -10,14 +10,14 @@ from phonenumber_field.modelfields import PhoneNumberField
 
 # Create your models here.
 def generate_unique_media_filename(instance, filename):
-    """
-    Generate a unique filename by appending a UUID to the original filename.
-    """
-    ext = filename.split('.')[-1].lower()  # Get the file extension in lowercase
-    allowed_extensions = ['jpg', 'jpeg', 'png', 'gif', 'mp4', 'mov', 'avi']  # Add more as needed
+    ext = filename.split('.')[-1].lower()
+    allowed_extensions = ['jpg', 'jpeg', 'png', 'gif', 'mp4', 'mov', 'avi']
+
     if ext not in allowed_extensions:
         raise ValidationError("Invalid file extension.")
+
     unique_filename = f"{uuid.uuid4()}.{ext}"
+
     return unique_filename
 
 
@@ -109,6 +109,16 @@ class Ticket(models.Model):
             self.id = sequence_id
 
         super().save(*args, **kwargs)
+
+
+class Comment(models.Model):
+    ticket = models.ForeignKey(Ticket, on_delete=models.CASCADE, related_name='comments')
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    text = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.text
 
 
 class ContactRelation(models.Model):

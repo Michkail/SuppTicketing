@@ -2,12 +2,11 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.shortcuts import render, redirect, get_object_or_404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.http import HttpResponse
+from django.contrib.auth.views import LoginView
 from django.utils import timezone
 
 from .models import Ticket, ContactRelation, ContactLeader
-from .forms import TicketForm, LoginForm, ProviderForm, LeaderForm
-from django.contrib.auth.views import LoginView
+from .forms import TicketForm, CommentForm, LoginForm, ProviderForm, LeaderForm
 
 
 class UserLoginView(LoginView):
@@ -74,6 +73,21 @@ def add_ticket(request):
         form = TicketForm()
 
     return render(request, {'form': form})
+
+
+def add_comment(request, ticket_id):
+    ticket = get_object_or_404(Ticket, id=ticket_id)
+
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.ticket = ticket
+            comment.user = request.user
+            comment.save()
+
+    return redirect('ticket_by_id', ticket_id=ticket_id)
 
 
 def ticket_by_id(request, ticket_id):
